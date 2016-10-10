@@ -1,0 +1,81 @@
+rootProject.allprojects { project ->
+    if (project.name == 'app') {
+
+        project.afterEvaluate {
+
+            repositories {
+
+                jcenter()
+
+            }
+
+            dependencies {
+
+                compile fileTree(dir: 'libs', include: ['*.jar'])
+
+                androidTestCompile rootProject.ext.dependencies.test.testrunner
+                androidTestCompile rootProject.ext.dependencies.test.testrule
+                androidTestCompile rootProject.ext.dependencies.test.espresso_core
+                androidTestCompile rootProject.ext.dependencies.test.espresso_intent
+                androidTestCompile rootProject.ext.dependencies.test.dexmaker_mockito
+                androidTestCompile rootProject.ext.dependencies.test.mockito
+                androidTestCompile rootProject.ext.dependencies.test.dexmaker_dx
+                androidTestCompile rootProject.ext.dependencies.test.awaitility
+                androidTestCompile rootProject.ext.dependencies.test.assertj_android
+                androidTestCompile rootProject.ext.dependencies.test.assertj_android_support
+                androidTestCompile rootProject.ext.dependencies.test.assertj_android_appcompat
+                androidTestCompile rootProject.ext.dependencies.test.assertj_android_recyclerview
+                androidTestCompile rootProject.ext.dependencies.test.kotlin_test
+                androidTestCompile rootProject.ext.dependencies.test.kotlin_test_junit
+                androidTestCompile rootProject.ext.dependencies.library.kotlin
+                kaptAndroidTest rootProject.ext.dependencies.library.dagger2Apt
+
+                testCompile rootProject.ext.dependencies.test.mockito
+                testCompile rootProject.ext.dependencies.test.junit
+                testCompile rootProject.ext.dependencies.test.assertj
+                kaptTest rootProject.ext.dependencies.library.dagger2Apt
+
+
+                compile rootProject.ext.dependencies.library.support_appcompat
+                compile rootProject.ext.dependencies.library.support_v13
+                compile rootProject.ext.dependencies.library.support_recyclerview
+                compile rootProject.ext.dependencies.library.support_annotation
+                compile rootProject.ext.dependencies.library.support_design
+                compile rootProject.ext.dependencies.library.support_constraint
+                kapt rootProject.ext.dependencies.library.databinding_apt
+
+                compile rootProject.ext.dependencies.library.kotlin
+
+                compile rootProject.ext.dependencies.library.dagger2
+                kapt rootProject.ext.dependencies.library.dagger2Apt
+                provided rootProject.ext.dependencies.library.jsr250
+
+                compile rootProject.ext.dependencies.library.dart
+                kapt rootProject.ext.dependencies.library.dart_processor
+
+                compile rootProject.ext.dependencies.library.henson
+                kapt rootProject.ext.dependencies.library.henson_processor
+
+                compile rootProject.ext.dependencies.library.rxandroid
+                compile rootProject.ext.dependencies.library.rxjava
+
+                compile rootProject.ext.dependencies.library.retrofit2
+                compile rootProject.ext.dependencies.library.retrofit2_gson
+                compile rootProject.ext.dependencies.library.retrofit2_rxjava2
+                compile rootProject.ext.dependencies.library.okhttp3
+                compile rootProject.ext.dependencies.library.okhttp3_logging
+                compile rootProject.ext.dependencies.library.stetho_okhttp3
+
+
+                compile rootProject.ext.dependencies.library.picasso
+
+                provided rootProject.ext.dependencies.library.auto_gson
+                kapt rootProject.ext.dependencies.library.auto_gson
+                kapt rootProject.ext.dependencies.library.auto_value_gson
+                provided rootProject.ext.dependencies.library.auto_value_gson
+
+            }
+
+        }
+    }
+}

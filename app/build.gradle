@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+kapt {
+    generateStubs = true
+    arguments {
+        arg("dart.henson.package", android.defaultConfig.applicationId)
+    }
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.3"
+    defaultConfig {
+        applicationId "com.nobrain.databindsample"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "FLICKER_API_KEY", "\"${flickr_api_key}\""
+        }
+
+        release {
+            minifyEnabled false
+            buildConfigField "String", "FLICKER_API_KEY", "\"${flickr_api_key}\""
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+        maxProcessCount Math.max(1, ((int) (Runtime.getRuntime().availableProcessors() / 2)))
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force rootProject.ext.dependencies.library.support_annotation
+        }
+    }
+
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+
+    packagingOptions.excludes = [
+            'META-INF/DEPENDENCIES',
+            'META-INF/LICENSE',
+            'META-INF/LICENSE.txt',
+            'LICENSE.txt',
+            'LICENSE',
+            'META-INF/license.txt',
+            'META-INF/NOTICE',
+            'NOTICE',
+            'asm-license.txt',
+            'META-INF/NOTICE.txt',
+            'META-INF/notice.txt',
+            'META-INF/ASL2.0',
+            '.readme',
+            '.readme.txt',
+            'META-INF/maven/com.google.guava/guava/pom.properties',
+            'META-INF/maven/com.google.guava/guava/pom.xml'
+    ]
+
+    lintOptions {
+        abortOnError false
+    }
+}

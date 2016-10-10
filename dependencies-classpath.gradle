@@ -1,0 +1,11 @@
+rootProject.buildscript.repositories {
+    jcenter()
+}
+
+
+rootProject.buildscript.dependencies {
+
+    classpath rootProject.ext.dependencies.classpath.kotlin
+    classpath rootProject.ext.dependencies.classpath.android
+    classpath rootProject.ext.dependencies.classpath.android_apt
+}
